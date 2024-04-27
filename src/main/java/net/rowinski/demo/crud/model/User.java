@@ -1,9 +1,6 @@
 package net.rowinski.demo.crud.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +8,15 @@ import lombok.Setter;
 import net.rowinski.demo.crud.validator.VatIdConstraint;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
+@SequenceGenerator(name = "user_id", sequenceName = "user_id_seq", allocationSize = 1)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id")
     private Long id;
 
     @NotBlank
