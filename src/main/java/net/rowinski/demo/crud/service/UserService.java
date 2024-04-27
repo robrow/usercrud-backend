@@ -5,6 +5,7 @@ import net.rowinski.demo.crud.model.User;
 import net.rowinski.demo.crud.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -17,8 +18,8 @@ public class UserService {
         return repository.findById(id);
     }
 
-    public User update(User user) {
-        return repository.save(user);
+    public List<User> findAll() {
+        return repository.findAll();
     }
 
     public User save(User user) {
