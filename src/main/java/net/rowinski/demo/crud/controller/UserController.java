@@ -1,5 +1,6 @@
 package net.rowinski.demo.crud.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.rowinski.demo.crud.model.User;
 import net.rowinski.demo.crud.service.UserService;
@@ -25,13 +26,13 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         user.setId(null);
         return userService.save(user);
     }
 
     @PostMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+    public User updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
         user.setId(id);
         return userService.save(user);
     }

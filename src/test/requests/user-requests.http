@@ -1,0 +1,31 @@
+### Get all users
+GET http://localhost:8080/api/users/
+
+### Create a user
+POST http://localhost:8080/api/users/
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "vatId": "DE123456789"
+}
+
+### Create a user with invalid vat
+POST http://localhost:8080/api/users/
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "vatId": "DE1234567890"
+}
+
+### Create a user with invalid first name
+POST http://localhost:8080/api/users/
+Content-Type: application/json
+
+{
+  "lastName": "Doe",
+  "vatId": "DE123456789"
+}

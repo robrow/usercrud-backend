@@ -2,6 +2,7 @@ package net.rowinski.demo.crud.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
 
 import java.util.Map;
 
@@ -19,7 +20,16 @@ public class VatIdValidator implements ConstraintValidator<VatIdConstraint, Stri
 
     @Override
     public boolean isValid(String vatId, ConstraintValidatorContext constraintValidatorContext) {
-        return vatId != null && vatId.length() > 3 && isValidVatId(vatId);
+        boolean valid = vatId != null && vatId.length() > 3 && isValidVatId(vatId);
+
+        if (!valid) {
+            HibernateConstraintValidatorContext hibernateContext =
+                    constraintValidatorContext.unwrap( HibernateConstraintValidatorContext.class );
+            hibernateContext.disableDefaultConstraintViolation();
+            hibernateContext.buildConstraintViolationWithTemplate("Vat ID is not valid").addConstraintViolation();
+        }
+
+        return valid;
     }
 
     protected static boolean isValidVatId(String vatId) {
