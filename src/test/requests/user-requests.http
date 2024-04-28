@@ -29,3 +29,16 @@ Content-Type: application/json
   "lastName": "Doe",
   "vatId": "DE123456789"
 }
+
+### Update a user
+POST http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "Updated",
+  "lastName": "Doe",
+  "vatId": "DE123456789"
+}
+
+### Delete a user
+DELETE http://localhost:8080/api/users/1
