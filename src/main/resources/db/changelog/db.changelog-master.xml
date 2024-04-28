@@ -16,4 +16,19 @@
             <column name="vat_id" type="varchar(50)" />
         </createTable>
     </changeSet>
+    <changeSet id="add-dummy-data" author="robin.rowinski">
+        <insert tableName="users">
+            <column name="id" valueSequenceNext="user_id_seq" />
+            <column name="first_name" value="Jane" />
+            <column name="last_name" value="Doe" />
+            <column name="vat_id" value="DE123456789" />
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueSequenceNext="user_id_seq" />
+            <column name="first_name" value="Rob" />
+            <column name="last_name" value="Row" />
+            <column name="info" value="Dev" />
+            <column name="vat_id" value="DE023456789" />
+        </insert>
+    </changeSet>
 </databaseChangeLog>
